@@ -5,6 +5,7 @@ import "./NavBar.css"
 export const NavBar = (props) => {
     return (
         <ul className="navbar">
+            <div class="animation start-home"></div>
             <li className="navbar__item active">
                 <Link className="navbar__link" to="/">Maintenance Minder</Link>
             </li>

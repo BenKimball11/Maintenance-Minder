@@ -1,13 +1,36 @@
 .vehicles {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .vehicle {
-      flex-basis: 28%;
-      margin: 1em;
-      padding: 1em;
-      border: 1px solid goldenrod;
-      border-radius: 1rem;
-  }
+  display: flex;
+  justify-content: space-between;
+}
+
+.vehicle {
+  flex-basis: 28%;
+  margin: 1em;
+  padding: 1em;
+  border: 1px solid goldenrod;
+  border-radius: 1rem;
+}
+.vehicleButton {
+     display:inline-block;
+     padding:0.35em 1.2em;
+     border:0.1em solid #FFFFFF;
+     margin:0 0.3em 0.3em 0;
+     border-radius:0.12em;
+     box-sizing: border-box;
+     text-decoration:none;
+     font-family:'Roboto',sans-serif;
+     font-weight:300;
+     color:#FFFFFF;
+     text-align:center;
+     transition: all 0.2s;
+    }
+    .vehicleButton :hover{
+     color:#000000;
+     background-color:#FFFFFF;
+    }
+    /* @media all and (max-width:30em){
+     vehicleButton{
+      display:block;
+      margin:0.4em auto;
+     {
+    } */

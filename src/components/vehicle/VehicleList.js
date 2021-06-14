@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { VehicleContext } from "./VehicleProvider";
 import { Vehicle } from "./Vehicle";
 import "./Vehicle.css";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export const VehicleList = () => {
   //Need a little more help understanding this
@@ -34,7 +34,9 @@ export const VehicleList = () => {
         {vehicles.map((vehicle) => (
           <div className="vehicle" id={`vehicle--${vehicle.id}`}>
             <div className="vehicle__make">
+
             {vehicle.vehicleYear} {vehicle.vehicleMake} {vehicle.vehicleModel}
+            
            </div>
 
             <div className="vehicleButton">

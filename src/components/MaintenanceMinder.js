@@ -13,7 +13,8 @@ export const MaintenanceMinder = () => (
         if (localStorage.getItem("maintenanceMinder_users")) {
           return (
             <>
-              <NavBar />
+              <h2>Maintenance Minder</h2>
+              <NavBar />              
               <ApplicationViews />
             </>
           );

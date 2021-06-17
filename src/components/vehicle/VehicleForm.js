@@ -14,7 +14,7 @@ export const VehicleForm = () => {
     const {vehicleId} = useParams();
 	  const history = useHistory();
 
-      const user = localStorage.getItem("maintenanceMinder_user")
+      const user = localStorage.getItem("maintenanceMinder_users")
 
     //when field changes, update state. This causes a re-render and updates the view.
     //Controlled component
@@ -30,8 +30,8 @@ export const VehicleForm = () => {
     }
 
     const handleSaveVehicle = () => {
-      if (parseInt(vehicle.locationId) === 0) {
-          window.alert("Please select a location")
+      if (parseInt(vehicle.maintenanceId) === 0) {
+          window.alert("Please select a ")
       } else {
         //disable the button - no extra clicks
         setIsLoading(true);
@@ -84,21 +84,21 @@ export const VehicleForm = () => {
             <input type="text" id="vehicleYear" name="vehicleYear" required autoFocus className="form-control"
             placeholder="Vehicle Year"
             onChange={handleControlledInputChange}
-            defaultValue={vehicle.vehicleYear}/>
+            value={vehicle.vehicleYear}/>
           </div>
         </fieldset>
         <fieldset>
         <div className="form-group">
           <label htmlFor="vehicleMake">Vehicle Make:</label>
           <input type="text" id="vehicleMake" name="vehicleMake" required autoFocus className="form-control" placeholder="Vehicle Make" value={vehicle.vehicleMake} onChange={handleControlledInputChange}
-          defaultValue={vehicle.vehicleMake} />
+          value={vehicle.vehicleMake} />
         </div>
       </fieldset>
         <fieldset>
         <div className="form-group">
           <label htmlFor="vehicleModel">Vehicle Model:</label>
           <input type="text" id="vehicleModel" name="vehicleModel" required autoFocus className="form-control" placeholder="Vehicle Model" value={vehicle.vehicleModel} onChange={handleControlledInputChange}
-          defaultValue={vehicle.vehicleModel} />
+          value={vehicle.vehicleModel} />
         </div>
       </fieldset>
         

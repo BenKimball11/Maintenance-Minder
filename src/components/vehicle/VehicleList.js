@@ -6,20 +6,17 @@ import { useHistory } from "react-router-dom";
 
 export const VehicleList = () => {
   //Need a little more help understanding this
-  //I think what is happening is passing in the VehicleContext from VehicleProvider, then? I know it accesses the keys, but how is fuzzy
+  //I think what is happening is passing in the VehicleContext from VehicleProvider,
+  //deconstructing that object from VehicleContext to just return getVehicles and vehicles
   const { getVehicles, vehicles } = useContext(VehicleContext);
 
   const history = useHistory();
-  // Initialization effect hook -> Go get Vehicle data
   //The useEffect() hook allows the component to reach out into the world for anything that cannot be handled during render
-  //it is the API call for the Vehicles.
+  //it is the API call for the getVehicles function.
+  //useEffect must always take a function and an array
+  //function comes first (getVehicles), then the array []
   useEffect(() => {
-    getVehicles();
-    /*  The dependency array. Logic within functions only occur when a function is invoked. 
-        Within a React component, useEffect is a function. 
-        After the return, useEffect is automatically invoked and since the dependency array is empty, 
-        it only runs the first time the component renders. 
-        You can include dependencies in the array to cause the useEffect to run additional times.*/
+    getVehicles(); 
   }, []); //like a .then() method?
 
   return (

@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MaintenanceContext } from "./MaintenanceProvider";
+import { VehicleContext } from "../vehicle/VehicleProvider";
 import { useHistory, useParams } from 'react-router-dom';
 import "./Maintenance.css";
 
 
 export const MaintenanceForm = () => {
     const { addMaintenance, getMaintenanceById, updateMaintenance } = useContext(MaintenanceContext);
+    const { vehicles, getVehicles } = useContext(VehicleContext);
     /* useState declares the default state of the functions.
     First thing in the array (vehicle) is always the current state
     second thing in the array (setvehicle) allows you to update the current state   */
@@ -13,7 +15,7 @@ export const MaintenanceForm = () => {
          
 
     
-      //const [isLoading, setIsLoading] = useState(true)
+      const [isLoading, setIsLoading] = useState(true)
       const {maintenanceId, vehicleId} = useParams()
       
       const history = useHistory()
@@ -30,37 +32,38 @@ export const MaintenanceForm = () => {
       }
     
     const handleSaveMaintenance = () => {
-    const user = localStorage.getItem("maintenanceMinder_user")
+    const user = localStorage.getItem("maintenanceMinder_users")
 
-    if (maintenance.vehicleId === 0 || maintenance.name === "" || maintenance.weightUsed === "" || maintenance.restInterval === "")  {
+    if (maintenance.vehicleId === 0 || maintenance.name === "")  {
       window.alert("Please fill out the fields")
     } else {
-      //setIsLoading(true);
+      setIsLoading(true);
       if (maintenanceId){
         updateMaintenance({
           id: parseInt(maintenance.id),
           userId: parseInt(user),
           vehicleId:parseInt(maintenance.vehicleId),
-          date: Date(),
+          date: maintenance.date,
           name: maintenance.name,
           itemsUsed: maintenance.itemsUsed,
           timeSpent: maintenance.timeSpent,
           note: maintenance.note,
+          maintenanceCost: parseInt(maintenance.maintenanceCost),
         })
         .then(() => history.push(`/vehicles/detail/${maintenance.vehicleId}`))
       }else{
         
-       // setIsLoading(true);
+       setIsLoading(true);
         addMaintenance({
           id: parseInt(maintenance.id),
           userId: parseInt(user),
-          vehicleId:parseInt(vehicleId),
-          date: Date(),
+          vehicleId: parseInt(vehicleId),
+          date: maintenance.date,
           name: maintenance.name,
           itemsUsed: maintenance.itemsUsed,
           timeSpent: maintenance.timeSpent,
           note: maintenance.note,
-          maintenanceCost: maintenance.maintenanceCost,
+          maintenanceCost: parseInt(maintenance.maintenanceCost),
         })
         .then(() => history.push(`/vehicles/detail/${vehicleId}`))
       }
@@ -68,19 +71,21 @@ export const MaintenanceForm = () => {
   }
 
   // Populates the forms with existing data if there is any
-    useEffect(() => {
-        if (maintenanceId){
-          getMaintenanceById(maintenanceId)
-          .then(maintenance => {
-              setMaintenance(maintenance)
-             // setIsLoading(false)
-          })
-        } else {
-          //setIsLoading(false)
-        }
-    }, 
-    [])
+  useEffect(() => {
+    getVehicles().then(() => {
+      if (maintenanceId){
+        getMaintenanceById(maintenanceId)
+        .then(maintenance => {
+            setMaintenance(maintenance)
+            setIsLoading(false)
+        })
+      } else {
+        setIsLoading(false)
+      }
+    })
+  }, [])
 
+ 
     //since state controlls this component, we no longer need
     //useRef(null) or ref
 
@@ -90,46 +95,46 @@ export const MaintenanceForm = () => {
           <fieldset>
               <div className="form-group">
                   <label htmlFor="name">Maintenance:</label>
-                  <input defaultValue={maintenance.name} type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Name" value={maintenance.name}/>
+                  <input value={maintenance.name} type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Name" value={maintenance.name}/>
               </div>
           </fieldset>
 
           <fieldset>
               <div className="form-group">
                   <label htmlFor="date">Date:</label>
-                  <input defaultValue={maintenance.date} type="date" id="date" onChange={handleControlledInputChange} required autoFocus className="form-control" value={maintenance.date}/>
+                  <input value={maintenance.date} type="date" id="date" onChange={handleControlledInputChange} required autoFocus className="form-control" value={maintenance.date}/>
               </div>
           </fieldset>
         
           <fieldset>
               <div className="form-group">
                   <label htmlFor="itemsUsed">Items Used:</label>
-                  <input defaultValue={maintenance.itemsUsed} type="text" id="itemsUsed" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Items Used" value={maintenance.itemsUsed}/>
+                  <input value={maintenance.itemsUsed} type="text" id="itemsUsed" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Items Used" value={maintenance.itemsUsed}/>
               </div>
           </fieldset>
 
           <fieldset>
               <div className="form-group">
                   <label htmlFor="timeSpent">Time Spent:</label>
-                  <input defaultValue={maintenance.timeSpent} type="text" id="timeSpent" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Time Spent" value={maintenance.timeSpent}/>
+                  <input value={maintenance.timeSpent} type="text" id="timeSpent" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Time Spent" value={maintenance.timeSpent}/>
               </div>
           </fieldset>
           
           <fieldset>
               <div className="form-group">
                   <label htmlFor="note">Note:</label>
-                  <input defaultValue={maintenance.note} type="text" id="note" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Note" value={maintenance.note}/>
+                  <input value={maintenance.note} type="text" id="note" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Note" value={maintenance.note}/>
               </div>
           </fieldset>
         
           <fieldset>
               <div className="form-group">
                   <label htmlFor="maintenanceCost">Maintenance Cost:</label>
-                  <input defaultValue={maintenance.maintenanceCost} type="text" id="maintenanceCost" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Maintenance Cost" value={maintenance.maintenanceCost}/>
+                  <input value={maintenance.maintenanceCost} type="text" id="maintenanceCost" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Maintenance Cost" value={maintenance.maintenanceCost}/>
               </div>
           </fieldset>
           <button className="btn btn-primary"
-          //disabled={isLoading}
+          disabled={isLoading}
           onClick={event => {
             event.preventDefault(); // Prevent browser from submitting the form and refreshing the page
             handleSaveMaintenance();

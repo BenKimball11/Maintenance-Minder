@@ -23,7 +23,7 @@ export const Login = props => {
             .then(exists => {
                 if (exists) {
                     localStorage.setItem("maintenanceMinder_users", exists.id)
-                    history.push("/")
+                    history.push("/vehicles")
                 } else {
                     existDialog.current.showModal()
                 }

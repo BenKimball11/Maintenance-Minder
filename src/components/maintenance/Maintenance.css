@@ -1,0 +1,14 @@
+.maintenance {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .maintenanceCard {
+      flex-basis: 28%;
+      margin: 1em;
+      padding: 1em;
+      border: 1px solid goldenrod;
+      border-radius: 1rem;
+      font-weight: bold;
+  }

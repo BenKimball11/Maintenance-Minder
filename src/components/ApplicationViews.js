@@ -29,12 +29,19 @@ export const ApplicationViews = () => {
             <VehicleForm />
           </Route>
 
-          <Route exact path="/maintenances/create/:workoutId(\d+)">
+
+
+
+          <Route exact path="/maintenances/create/:vehicleId(\d+)">
             <MaintenanceForm />
           </Route>
 
-          <Route exact path="/maintenances/detail/:maintenanceId(\d+)">
+   {/*        <Route exact path="/maintenances/detail/:maintenanceId(\d+)">
             <MaintenanceDetail />
+          </Route> */}
+
+          <Route path="/maintenances/edit/:maintenanceId(\d+)">
+            <MaintenanceForm />
           </Route>
 
         </MaintenanceProvider>

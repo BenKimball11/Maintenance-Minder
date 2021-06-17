@@ -1,33 +1,34 @@
-import React, { useContext, useEffect, useState } from "react"
-import { MaintenanceContext } from "./MaintenanceProvider"
-import "./Maintenance.css"
-import { useParams } from "react-router-dom"
-
-export const MaintenanceDetail = () => {
-    const {maintenances } = useContext(MaintenanceContext)
-    const [maintenance, setMaintenance ] = useState({ location: {}, customer: {} })
-
-    /*
-        Given the example URL above, this will store the value
-        of 5 in themaintenanceId variable
-    */
-    const {maintenanceId } = useParams();
+/* import { useHistory } from "react-router-dom";
+import "./Maintenance.css";
+//The expression can be a React variable, or property, or any other valid JavaScript expression. 
+//JSX will execute the expression and return the result:
+export const MaintenanceDetail = ( { maintenance , maintenanceDelete } ) => {
+ //const { Maintenance , MaintenanceDelete } =useContext(MaintenanceContext)
+  
+    const history = useHistory();
 
 
-    useEffect(() => {
-        const thisMaintenance =maintenances.find(a => a.id === parseInt(maintenanceId)) || { location: {}, customer: {} }
 
-        setMaintenance(thisMaintenance)
-    }, [maintenanceId])
 
-    return (
-    <section className="Maintenance">
-        <h3 className="Maintenance__name">{maintenance.name }</h3>
-        <div className="Maintenance__date">Date: {maintenance.location.name }</div>
+
+  return (
+    <section className="maintenanceCard">
+    <h3 className="maintenance__name">{maintenance.name}</h3>  
+   
+
+        <div className="Maintenance__date">Date: {maintenance.date }</div>
         <div className="Maintenance__itemsUsed">Items Used: {maintenance.itemsUsed }</div>
         <div className="Maintenance__timeSpent">Time Spent: {maintenance.timeSpent}</div>
         <div className="Maintenance__note">note: {maintenance.note }</div>
         <div className="Maintenance__maintenanceCost">Maintenance Cost: {maintenance.maintenanceCost }</div>
+      <button className="deleteBtn"
+          onClick={() => maintenanceDelete(maintenance.id)}>
+          Remove Maintenance 
+      </button>
+          <button className='edit' onClick={() => {
+          history.push(`/maintenances/edit/${maintenance.id}`)
+        }}>Edit</button>
+
     </section>
-    )
-}
+  )
+  } */

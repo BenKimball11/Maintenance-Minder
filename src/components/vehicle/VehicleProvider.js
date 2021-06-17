@@ -5,10 +5,15 @@ export const VehicleContext = createContext()
 
 // This component establishes what data can be used.
 export const VehicleProvider = (props) => {
+    //useState() defining a varible to hold state. Nothing else is happening here
+    //establishing state as an empty array, the getVehicles then the data that is recieved from , .then update vehicles state with that array
     const [vehicles, setVehicles] = useState([])
 
+    const user = localStorage.getItem("maintenanceMinder_users")
+
     const getVehicles = () => {
-        return fetch("http://localhost:8088/vehicles")
+        return fetch(`http://localhost:8088/vehicles/?userId=${user}&_embed=maintenances`)
+        //getting data from the api, then passing that data to setVehicles function, the update vehicles state with the vehicles array from the database
         .then(res => res.json())
         .then(setVehicles)
     }
@@ -43,7 +48,7 @@ export const VehicleProvider = (props) => {
     }
 
     const getVehicleById = vehicleId => {
-        return fetch (`http://localhost:8088/vehicles/${vehicleId}`)
+        return fetch (`http://localhost:8088/vehicles/${vehicleId}?_embed=maintenances`)
         .then(res => res.json())
     }
 

@@ -4,7 +4,6 @@ import { VehicleProvider } from "./vehicle/VehicleProvider";
 import { MaintenanceProvider } from "./maintenance/MaintenanceProvider";
 import { VehicleList } from "./vehicle/VehicleList";
 import { VehicleDetail } from "./vehicle/VehicleDetail";
-import { MaintenanceDetail } from "./maintenance/MaintenanceDetail";
 import { VehicleForm } from "./vehicle/VehicleForm";
 import { MaintenanceForm } from "./maintenance/MaintenanceForm";
 
@@ -35,10 +34,6 @@ export const ApplicationViews = () => {
           <Route exact path="/maintenances/create/:vehicleId(\d+)">
             <MaintenanceForm />
           </Route>
-
-   {/*        <Route exact path="/maintenances/detail/:maintenanceId(\d+)">
-            <MaintenanceDetail />
-          </Route> */}
 
           <Route path="/maintenances/edit/:maintenanceId(\d+)">
             <MaintenanceForm />

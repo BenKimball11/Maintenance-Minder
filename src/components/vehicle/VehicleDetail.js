@@ -14,18 +14,20 @@ export const VehicleDetail = () => {
   //setLocation allows us to update state
   //useState() holds data. thats it
    //useParams() captures the parameter set in the url when Vehicle detail route is present?
-  const { vehicleId } = useParams();
+  const { vehicleId } = useParams(); //dynamnic routing element
 
   const history = useHistory();
 
-
+//useEffect runs everytime state changes
+//whenever the vehicle detail route changes in the URL, useEffect() triggers to get the vehicle by id and display the information associated with the vehicleId. 
   useEffect(() => {
-    getVehicleById(vehicleId)
-    .then(vehicle => {
-        setVehicle(vehicle)
+    getVehicleById(vehicleId)// 2
+    .then(vehicle => { // 3
+        setVehicle(vehicle) // 4
     })
-}, [vehicleId])
-
+    //whenever the vehicle detail route changes, useEffect() triggers
+}, [vehicleId]) // 1 do i need vehicleId in here?
+console.log(vehicleId)
 
   return (
     <section className="vehicle">

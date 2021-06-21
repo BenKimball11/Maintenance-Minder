@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { VehicleContext } from "./VehicleProvider";
-import { Vehicle } from "./Vehicle";
+//import { Vehicle } from "./Vehicle";
 import "./Vehicle.css";
 import { useHistory } from "react-router-dom";
 

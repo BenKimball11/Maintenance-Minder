@@ -14,7 +14,7 @@ export const VehicleForm = () => {
     const {vehicleId} = useParams();
 	  const history = useHistory();
 
-      const user = localStorage.getItem("maintenanceMinder_users")
+      const user = localStorage.getItem("maintenanceMinder_user")
 
     //when field changes, update state. This causes a re-render and updates the view.
     //Controlled component

@@ -10,7 +10,7 @@ export const MaintenanceMinder = () => (
   <>
     <Route
       render={() => {
-        if (localStorage.getItem("maintenanceMinder_users")) {
+        if (localStorage.getItem("maintenanceMinder_user")) {
           return (
             <>
               <h2>Maintenance Minder</h2>

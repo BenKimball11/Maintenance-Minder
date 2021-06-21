@@ -32,7 +32,7 @@ export const MaintenanceForm = () => {
       }
     
     const handleSaveMaintenance = () => {
-    const user = localStorage.getItem("maintenanceMinder_users")
+    const user = localStorage.getItem("maintenanceMinder_user")
 
     if (maintenance.vehicleId === 0 || maintenance.name === "")  {
       window.alert("Please fill out the fields")

@@ -9,7 +9,7 @@ export const VehicleProvider = (props) => {
     //establishing state as an empty array, the getVehicles then the data that is recieved from , .then update vehicles state with that array
     const [vehicles, setVehicles] = useState([])
 
-    const user = localStorage.getItem("maintenanceMinder_users")
+    const user = localStorage.getItem("maintenanceMinder_user")
 
     const getVehicles = () => {
         return fetch(`http://localhost:8088/vehicles/?userId=${user}&_embed=maintenances`)

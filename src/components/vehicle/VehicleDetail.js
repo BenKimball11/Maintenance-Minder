@@ -22,12 +22,15 @@ export const VehicleDetail = () => {
 //whenever the vehicle detail route changes in the URL, useEffect() triggers to get the vehicle by id and display the information associated with the vehicleId. 
   useEffect(() => {
     getVehicleById(vehicleId)// 2
-    .then(vehicle => { // 3
-        setVehicle(vehicle) // 4
+    .then(vehicleObj => { // 3 
+        setVehicle(vehicleObj) // 4
     })
     //whenever the vehicle detail route changes, useEffect() triggers
+    //this array is watching for something, when something involving the vehicleId
+    //vehicleId is being watched in the useEffect
 }, [vehicleId]) // 1 do i need vehicleId in here?
-console.log(vehicleId)
+
+
 
   return (
     <section className="vehicle">

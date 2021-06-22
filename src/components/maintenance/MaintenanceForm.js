@@ -14,8 +14,6 @@ export const MaintenanceForm = () => {
     const [maintenance, setMaintenance] = useState({})
          
 
-    
-      const [isLoading, setIsLoading] = useState(true)
       const {maintenanceId, vehicleId} = useParams()
       
       const history = useHistory()
@@ -34,10 +32,6 @@ export const MaintenanceForm = () => {
     const handleSaveMaintenance = () => {
     const user = localStorage.getItem("maintenanceMinder_user")
 
-    if (maintenance.vehicleId === 0 || maintenance.name === "")  {
-      window.alert("Please fill out the fields")
-    } else {
-      setIsLoading(true);
       if (maintenanceId){
         updateMaintenance({
           id: parseInt(maintenance.id),
@@ -53,7 +47,6 @@ export const MaintenanceForm = () => {
         .then(() => history.push(`/vehicles/detail/${maintenance.vehicleId}`))
       }else{
         
-       setIsLoading(true);
         addMaintenance({
           id: parseInt(maintenance.id),
           userId: parseInt(user),
@@ -66,7 +59,6 @@ export const MaintenanceForm = () => {
           maintenanceCost: parseInt(maintenance.maintenanceCost),
         })
         .then(() => history.push(`/vehicles/detail/${vehicleId}`))
-      }
     }
   }
 
@@ -76,11 +68,8 @@ export const MaintenanceForm = () => {
       if (maintenanceId){
         getMaintenanceById(maintenanceId)
         .then(maintenance => {
-            setMaintenance(maintenance)
-            setIsLoading(false)
+            setMaintenance(maintenance)          
         })
-      } else {
-        setIsLoading(false)
       }
     })
   }, [])
@@ -134,7 +123,6 @@ export const MaintenanceForm = () => {
               </div>
           </fieldset>
           <button className="btn btn-primary"
-          disabled={isLoading}
           onClick={event => {
             event.preventDefault(); // Prevent browser from submitting the form and refreshing the page
             handleSaveMaintenance();

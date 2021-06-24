@@ -17,7 +17,7 @@ export const VehicleList = () => {
   //function comes first (getVehicles), then the array []
   useEffect(() => {
     getVehicles(); 
-  }, []); //like a .then() method?
+  }, []); 
 
   return (
     <>

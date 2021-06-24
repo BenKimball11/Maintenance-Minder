@@ -9,7 +9,7 @@ export const VehicleForm = () => {
     //for edit, hold on to state of Vehicle in this view
     const [vehicle, setVehicle] = useState({})
     //wait for data before button is active
-    const [isLoading, setIsLoading] = useState(true);
+   /*  const [isLoading, setIsLoading] = useState(true); */
 
     const {vehicleId} = useParams();
 	  const history = useHistory();
@@ -30,11 +30,8 @@ export const VehicleForm = () => {
     }
 
     const handleSaveVehicle = () => {
-      if (parseInt(vehicle.maintenanceId) === 0) {
-          window.alert("Please select a ")
-      } else {
+    
         //disable the button - no extra clicks
-        setIsLoading(true);
         if (vehicleId){
           //PUT - update
           updateVehicle({
@@ -53,8 +50,7 @@ export const VehicleForm = () => {
             vehicleMake: vehicle.vehicleMake,
             vehicleModel: vehicle.vehicleModel
           })
-          .then(() => history.push("/vehicles"))
-        }
+          .then(() => history.push("/vehicles"))       
       }
     }
 
@@ -64,13 +60,10 @@ export const VehicleForm = () => {
           getVehicleById(vehicleId)
             .then(vehicle => {
               setVehicle(vehicle)
-              setIsLoading(false)
             })
-        } else {
-          setIsLoading(false)
-        }
-    
-      }, [])
+          }   
+      }, [])// this array is empty is because the vehicle doesnt exist yet
+            // the empty array on the useEffect runs on page load. If there is nothing to watch, then it just runs the function inside it.
 
     //since state controlls this component, we no longer need
     //useRef(null) or ref
@@ -103,7 +96,7 @@ export const VehicleForm = () => {
       </fieldset>
         
         <button className="btn btn-primary"
-          disabled={isLoading}
+          
           onClick={event => {
             event.preventDefault() // Prevent browser from submitting the form and refreshing the page
             handleSaveVehicle()

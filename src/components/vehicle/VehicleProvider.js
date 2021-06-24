@@ -49,7 +49,7 @@ export const VehicleProvider = (props) => {
 
     const getVehicleById = vehicleId => {
         return fetch (`http://localhost:8088/vehicles/${vehicleId}?_embed=maintenances`)
-        .then(res => res.json())
+        .then(res => res.json()) //this returns an object
     }
 
     /*
